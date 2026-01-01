@@ -62,7 +62,7 @@ For Linux distributions and macOS, a unified build process is supported.
 
 1. Install Dependencies
 
-```Markdown
+Markdown
 
 <details> 
   
@@ -79,8 +79,6 @@ Fedora	sudo dnf install cmake gcc-c++ SDL2-devel
 macOS (Homebrew)	brew install cmake sdl2
 
 </details>
-
-```
 
 2. Build & Run
 ```Bash
