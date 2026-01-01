@@ -167,8 +167,13 @@ int main(int argc, char* argv[]) {
 
     g_ctx = new GameContext();
 
-    unsigned int n_threads = std::thread::hardware_concurrency();
-    if (n_threads == 0) n_threads = 4;
+    #ifdef __EMSCRIPTEN__
+        unsigned int n_threads = 0; 
+    #else
+        unsigned int n_threads = std::thread::hardware_concurrency();
+        if (n_threads == 0) n_threads = 4;
+    #endif
+
     g_ctx->pool = new ThreadPool(n_threads);
     printf("Using %u threads.\n", n_threads);
 
@@ -232,3 +237,4 @@ int main(int argc, char* argv[]) {
     return 0;
 
 }
+
