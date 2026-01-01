@@ -1,6 +1,8 @@
 # Gift From Other Planet 
 
 > **Dive into a living alien world found on your screen.**
+>
+> ![Project Screenshot](screenshot.png) 
 
 **Gift From Other Planet** is an interactive generative art application built from scratch with **C++** and **SDL2**. It combines physics-based fluid simulation with real-time procedural audio synthesis to create a mesmerizing audio-visual experience.
 
