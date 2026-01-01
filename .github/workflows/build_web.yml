@@ -18,12 +18,16 @@ jobs:
       run: |
         mkdir build_web
         
-        emcc *.cpp -O2 \
+        
+        emcc src/*.cpp \
+        -I src \
+        -O2 \
         -std=c++11 \
         -s USE_SDL=2 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" \
-        --preload-file "Stellardrone - Eternity.mp3" \
+        --preload-file assets \
+        --use-preload-plugins \
         -o build_web/index.html
 
     - name: Upload Artifact
