@@ -183,7 +183,7 @@ int main(int argc, char* argv[]) {
 
     ma_result result;
     ma_engine_init(NULL, &g_ctx->engine);
-    ma_sound_init_from_file(&g_ctx->engine, "Stellardrone - Eternity.mp3", MA_SOUND_FLAG_DECODE | MA_SOUND_FLAG_STREAM, NULL, NULL, &g_ctx->background_music);
+    ma_sound_init_from_file(&g_ctx->engine, "assets/Stellardrone - Eternity.mp3", MA_SOUND_FLAG_DECODE | MA_SOUND_FLAG_STREAM, NULL, NULL, &g_ctx->background_music);
     ma_sound_set_looping(&g_ctx->background_music, MA_TRUE);
     ma_sound_start(&g_ctx->background_music);
 
@@ -230,4 +230,5 @@ int main(int argc, char* argv[]) {
     delete g_ctx;
     SDL_Quit();
     return 0;
+
 }
