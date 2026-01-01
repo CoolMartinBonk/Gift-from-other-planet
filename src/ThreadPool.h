@@ -79,7 +79,7 @@ public:
         std::unique_lock<std::mutex> lock(queue_mutex);
         cv_job_done.wait(lock, [this] {
             return jobs_in_progress == 0;
-        });
+            });
     }
 
     void reduce_forces(std::vector<Vector2D>& main_forces) {
@@ -102,7 +102,7 @@ private:
 
                 cv_job_ready.wait(lock, [this, last_generation] {
                     return generation != last_generation || stop_flag;
-                });
+                    });
 
                 if (stop_flag) return;
 
@@ -110,10 +110,12 @@ private:
                     last_generation = generation;
                     if (thread_id < jobs.size() && !jobs[thread_id].empty()) {
                         task_keys = jobs[thread_id];
-                    } else {
+                    }
+                    else {
                         continue;
                     }
-                } else {
+                }
+                else {
                     continue;
                 }
             }
@@ -149,4 +151,3 @@ private:
     size_t generation = 0;
     bool stop_flag = false;
 };
-
