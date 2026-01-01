@@ -20,14 +20,16 @@ jobs:
         
         emcc src/*.cpp \
         -I src \
-        -O2 \
+        -O3 \
+        -flto \
         -std=c++11 \
         -s USE_SDL=2 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s INITIAL_MEMORY=134217728 \
         -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" \
-        -s ASSERTIONS=1 \
-        -s DISABLE_EXCEPTION_CATCHING=0 \
+        -s ASSERTIONS=0 \
+        -s DISABLE_EXCEPTION_CATCHING=1 \
+        -s AGGRESSIVE_VARIABLE_ELIMINATION=1 \
         --preload-file assets \
         --use-preload-plugins \
         -o build_web/index.html
