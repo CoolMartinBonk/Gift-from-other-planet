@@ -7,18 +7,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup Emscripten
-      uses: mymindstorm/setup-emsdk@v11
+      uses: mymindstorm/setup-emsdk@v12
       with:
-        version: 3.1.44
+        version: 3.1.51
 
     - name: Compile
       run: |
         mkdir build_web
-                
-        emcc main.cpp -O2 \
+        
+        emcc *.cpp -O2 \
+        -std=c++11 \
         -s USE_SDL=2 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" \
@@ -26,7 +27,7 @@ jobs:
         -o build_web/index.html
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: web-game
         path: build_web
