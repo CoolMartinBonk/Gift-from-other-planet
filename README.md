@@ -15,7 +15,7 @@ Every movement creates its own unique sound. Touch the fluid, listen to the math
 *   **Interactive Fluid Dynamics**: A custom SPH (Smoothed-Particle Hydrodynamics) system simulating thousands of particles.
 *   **Generative Audio Engine**: Real-time sound synthesis using FM modulation and Schroeder reverb algorithms. No pre-recorded sound effects—the physics generates the audio.
 *   **Metaball Rendering**: Organic, glowing visual style that merges particles into liquid forms.
-*   **Creative Sandbox**: Paint with rainbow particles or trigger explosions.
+*   **Creative Sandbox**: Paint with mystery-rainbow/eternal-blue particles or trigger explosions.
 *   **Cross-Platform**: Built with CMake for easy deployment on Windows, Linux, and macOS.
 
 ---
