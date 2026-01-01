@@ -25,7 +25,9 @@ jobs:
         -s USE_SDL=2 \
         -s ALLOW_MEMORY_GROWTH=1 \
         -s USE_PTHREADS=1 \
-        -s PTHREAD_POOL_SIZE=4 \
+        -s PROXY_TO_PTHREAD=1 \
+        -s PTHREAD_POOL_SIZE=8 \
+        -s OFFSCREEN_FRAMEBUFFER=1 \
         -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" \
         -s ASSERTIONS=1 \
         --preload-file assets \
