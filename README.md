@@ -63,10 +63,15 @@ For Linux distributions and macOS, a unified build process is supported.
 <details> <summary><strong>Click to expand installation commands</strong></summary>
 
 Platform	Command
+
 Ubuntu/Debian	sudo apt install build-essential cmake libsdl2-dev
+
 Arch Linux	sudo pacman -S base-devel cmake sdl2
+
 Fedora	sudo dnf install cmake gcc-c++ SDL2-devel
+
 macOS (Homebrew)	brew install cmake sdl2
+
 </details>
 
 2. Build & Run
