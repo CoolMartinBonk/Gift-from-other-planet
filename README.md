@@ -62,7 +62,9 @@ For Linux distributions and macOS, a unified build process is supported.
 
 1. Install Dependencies
 
-<details> <summary><strong>Click to expand installation commands</strong></summary>
+<details> 
+  
+<summary><strong>Click to expand installation commands</strong></summary>
 
 Platform	Command
 
