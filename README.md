@@ -51,6 +51,7 @@ mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
+```
 
 The executable will be generated in the build/Release/ folder.
 
@@ -77,6 +78,7 @@ cmake --build build --parallel
 # Run
 ./build/GiftFromOtherPlanet
 
+``` 
 
 
 
