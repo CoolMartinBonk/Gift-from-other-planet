@@ -1,0 +1,32 @@
+name: Build for Web
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Emscripten
+      uses: mymindstorm/setup-emsdk@v11
+      with:
+        version: 3.1.44
+
+    - name: Compile
+      run: |
+        mkdir build_web
+                
+        emcc main.cpp -O2 \
+        -s USE_SDL=2 \
+        -s ALLOW_MEMORY_GROWTH=1 \
+        -s "EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" \
+        --preload-file "Stellardrone - Eternity.mp3" \
+        -o build_web/index.html
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: web-game
+        path: build_web
