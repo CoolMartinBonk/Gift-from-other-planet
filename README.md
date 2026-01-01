@@ -1,4 +1,4 @@
-# Gift From Other Planet 🌌
+# Gift From Other Planet 
 
 > **Dive into a living alien world found on your screen.**
 
@@ -8,7 +8,7 @@ Every movement creates its own unique sound. Touch the fluid, listen to the math
 
 ---
 
-## ✨ Features
+##  Features
 
 *   **Interactive Fluid Dynamics**: A custom SPH (Smoothed-Particle Hydrodynamics) system simulating thousands of particles.
 *   **Generative Audio Engine**: Real-time sound synthesis using FM modulation and Schroeder reverb algorithms. No pre-recorded sound effects—the physics generates the audio.
@@ -18,7 +18,7 @@ Every movement creates its own unique sound. Touch the fluid, listen to the math
 
 ---
 
-## 🎮 Controls
+##  Controls
 
 | Input | Action |
 | :--- | :--- |
@@ -30,15 +30,17 @@ Every movement creates its own unique sound. Touch the fluid, listen to the math
 
 ---
 
-## 🛠️ Build Instructions
+##  Build Instructions
 
 This project uses **CMake** to manage the build process.
 
 ### Prerequisites
+
 *   **C++ Compiler** (GCC, Clang, or MSVC)
 *   **CMake** (3.10 or newer)
 
-### 💻 Windows
+###  Windows
+
 *Note: SDL2 libraries are included in the `libs/` folder, so no external installation is required.*
 
 1. Open a terminal (CMD or PowerShell) in the project root.
@@ -49,3 +51,33 @@ mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
+
+The executable will be generated in the build/Release/ folder.
+
+###  Unix-like Environments (Linux & macOS)
+For Linux distributions and macOS, a unified build process is supported.
+
+1. Install Dependencies
+
+<details> <summary><strong>Click to expand installation commands</strong></summary>
+
+Platform	Command
+Ubuntu/Debian	sudo apt install build-essential cmake libsdl2-dev
+Arch Linux	sudo pacman -S base-devel cmake sdl2
+Fedora	sudo dnf install cmake gcc-c++ SDL2-devel
+macOS (Homebrew)	brew install cmake sdl2
+</details>
+
+2. Build & Run
+```Bash
+# Configure and Build
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+
+# Run
+./build/GiftFromOtherPlanet
+
+
+
+
+
