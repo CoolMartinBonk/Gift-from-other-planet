@@ -74,7 +74,6 @@ public:
     }
 
     void wait() {
-        // 修改点 3: 如果没有子线程，说明任务已经同步完成了，不需要等待
         if (workers.empty()) return;
 
         std::unique_lock<std::mutex> lock(queue_mutex);
@@ -150,3 +149,4 @@ private:
     size_t generation = 0;
     bool stop_flag = false;
 };
+
