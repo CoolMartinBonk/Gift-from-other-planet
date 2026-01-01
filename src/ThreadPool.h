@@ -5,13 +5,21 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <algorithm>
+
+void calculate_forces_for_keys(const std::vector<int>& keys, const SpatialGrid& grid, std::vector<Vector2D>& forces);
 
 class ThreadPool {
 public:
     ThreadPool(size_t num_threads) : jobs_in_progress(0), stop_flag(false) {
-        for (size_t i = 0; i < num_threads; ++i) {
-            workers.emplace_back(&ThreadPool::worker_loop, this, i);
+        if (num_threads == 0) {
             thread_local_forces.emplace_back(TOTAL_PARTICLES, Vector2D());
+        }
+        else {
+            for (size_t i = 0; i < num_threads; ++i) {
+                workers.emplace_back(&ThreadPool::worker_loop, this, i);
+                thread_local_forces.emplace_back(TOTAL_PARTICLES, Vector2D());
+            }
         }
     }
 
@@ -30,6 +38,12 @@ public:
 
     void dispatch_repulsion_calc(const std::vector<int>& keys, const SpatialGrid& grid) {
         if (keys.empty()) return;
+
+        if (workers.empty()) {
+            std::fill(thread_local_forces[0].begin(), thread_local_forces[0].end(), Vector2D());
+            calculate_forces_for_keys(keys, grid, thread_local_forces[0]);
+            return;
+        }
 
         {
             std::unique_lock<std::mutex> lock(queue_mutex);
@@ -60,10 +74,13 @@ public:
     }
 
     void wait() {
+        // 修改点 3: 如果没有子线程，说明任务已经同步完成了，不需要等待
+        if (workers.empty()) return;
+
         std::unique_lock<std::mutex> lock(queue_mutex);
         cv_job_done.wait(lock, [this] {
             return jobs_in_progress == 0;
-            });
+        });
     }
 
     void reduce_forces(std::vector<Vector2D>& main_forces) {
@@ -86,7 +103,7 @@ private:
 
                 cv_job_ready.wait(lock, [this, last_generation] {
                     return generation != last_generation || stop_flag;
-                    });
+                });
 
                 if (stop_flag) return;
 
@@ -94,12 +111,10 @@ private:
                     last_generation = generation;
                     if (thread_id < jobs.size() && !jobs[thread_id].empty()) {
                         task_keys = jobs[thread_id];
-                    }
-                    else {
+                    } else {
                         continue;
                     }
-                }
-                else {
+                } else {
                     continue;
                 }
             }
